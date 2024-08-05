@@ -282,40 +282,40 @@ let name = "Nathan Collins";
         ];
       };
 
-      dynamic_padding = true;
-      decorations = "full";
-      title = "Terminal";
-      class = {
-        instance = "Alacritty";
-        general = "Alacritty";
-      };
+      # dynamic_padding = true;
+      # decorations = "full";
+      # title = "Terminal";
+      # class = {
+      #   instance = "Alacritty";
+      #   general = "Alacritty";
+      # };
 
       colors = {
         primary = {
-          background = "0x1f2528";
-          foreground = "0xc0c5ce";
+          background = "0x16181a";
+          foreground = "0xffffff";
         };
 
         normal = {
-          black = "0x1f2528";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xc0c5ce";
+          black = "0x16181a";
+          blue = "0x5ea1ff";
+          cyan = "0x5ef1ff";
+          green = "0x5eff6c";
+          magenta = "0xbd5eff";
+          red = "0xff6e5e";
+          white = "0xffffff";
+          yellow = "0xf1ff5e";
         };
 
         bright = {
-          black = "0x65737e";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xd8dee9";
+          black = "0x3c4048";
+          blue = "0x5ea1ff";
+          cyan = "0x5ef1ff";
+          green = "0x5eff6c";
+          magenta = "0xbd5eff";
+          red = "0xff6e5e";
+          white = "0xffffff";
+          yellow = "0xf1ff5e";
         };
       };
     };
@@ -354,9 +354,35 @@ let name = "Nathan Collins";
       yank
       prefix-highlight
       {
-        plugin = power-theme;
+        plugin = catppuccin;
         extraConfig = ''
-           set -g @tmux_power_theme 'gold'
+          # cp ./cyberdream.tmuxtheme ~/.tmux/plugins/tmux/themes/catppuccin_cyberdream.tmuxtheme
+          set -g @plugin 'catppuccin/tmux'
+          set -g @catppuccin_window_left_separator ""
+          set -g @catppuccin_window_right_separator " "
+          set -g @catppuccin_window_middle_separator " █"
+          set -g @catppuccin_window_number_position "right"
+
+          set -g @catppuccin_window_default_fill "number"
+          set -g @catppuccin_window_default_text "#W"
+
+          set -g @catppuccin_window_current_fill "number"
+          set -g @catppuccin_window_current_text "#W"
+
+          set -g @catppuccin_status_modules_right "directory cpu"
+          set -g @catppuccin_status_left_separator  " "
+          set -g @catppuccin_status_right_separator ""
+          set -g @catppuccin_status_fill "icon"
+          set -g @catppuccin_status_connect_separator "no"
+
+          set -g @catppuccin_directory_text "#{pane_current_path}"
+          set -g @catppuccin_flavour 'cyberdream' # latte,frappe, macchiato or mocha
+        '';
+      }
+      {
+        plugin = cpu;
+        extraConfig = ''
+          set -g @plugin 'tmux-plugins/tmux-cpu'
         '';
       }
       {
