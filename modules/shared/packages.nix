@@ -40,6 +40,7 @@ with pkgs; [
   nodePackages.npm # globally install npm
   nodePackages.prettier
   nodejs
+  deno
 
   # Text and terminal utilities
   htop

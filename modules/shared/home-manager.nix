@@ -2,7 +2,8 @@
 
 let name = "Nathan Collins";
     user = "nathancollins";
-    email = "nathan.collins@cap.energy"; in
+    email = "nathjcollins@gmail.com";
+in
 {
   # Shared shell configuration
   zsh = {
@@ -356,7 +357,6 @@ let name = "Nathan Collins";
       {
         plugin = catppuccin;
         extraConfig = ''
-          # cp ./cyberdream.tmuxtheme ~/.tmux/plugins/tmux/themes/catppuccin_cyberdream.tmuxtheme
           set -g @plugin 'catppuccin/tmux'
           set -g @catppuccin_window_left_separator ""
           set -g @catppuccin_window_right_separator " "
@@ -376,7 +376,7 @@ let name = "Nathan Collins";
           set -g @catppuccin_status_connect_separator "no"
 
           set -g @catppuccin_directory_text "#{pane_current_path}"
-          set -g @catppuccin_flavour 'cyberdream' # latte,frappe, macchiato or mocha
+          set -g @catppuccin_flavour 'frappe' # latte,frappe, macchiato or mocha
         '';
       }
       {
