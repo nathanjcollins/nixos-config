@@ -1,4 +1,4 @@
-{ user, pkgs, config, ... }:
+{ user, lib, pkgs, config, ... }:
 
 let
  # githubPublicKey = "ssh-ed25519 AAAA...";
@@ -15,15 +15,15 @@ in
       sha256 = "sha256-yVLHn3qg+gkP7y/1DL94gyfSkLModPGxjqkoC54Kndc=";
     }}/extras/tmux/cyberdream.tmuxtheme";
   };
-  "${xdg_configHome}/nvim" = {
-    source = "${pkgs.fetchFromGitHub {
-      owner = "nathanjcollins";
-      repo = "nvim-config";
-      rev = "802482fb7f262daa237bea7bea1307bd3e3ee96d";
-      sha256 = "sha256-KTyoyMwH91JuU54iIh4+dO2V46RCmbAcaOmQ5DCdyq4";
-    }}";
-    recursive = true;
-  };
+  # "${xdg_configHome}/nvim" = {
+  #   source = "${pkgs.fetchFromGitHub {
+  #     owner = "nathanjcollins";
+  #     repo = "nvim-config";
+  #     rev = "16d0122cbdc426ea6d844807a9630c687dd675d3";
+  #     sha256 = "sha256-otUZ7Vox7z5rdbOjKP4sbyHGkgoNeRVE5Zaof4U9nrM=";
+  #   }}";
+  #   recursive = true;
+  # };
 
   # ".ssh/id_github.pub" = {
   #   text = githubPublicKey;

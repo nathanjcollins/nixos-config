@@ -55,8 +55,8 @@ with pkgs; [
   zsh-powerlevel10k
 
   # Python packages
-  python39
-  python39Packages.virtualenv # globally install virtualenv
+  python312
+  python312Packages.virtualenv # globally install virtualenv
 
   # Rust development tools
   rustup
