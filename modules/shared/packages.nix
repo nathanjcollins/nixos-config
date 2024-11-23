@@ -15,6 +15,7 @@ with pkgs; [
   sqlite
   wget
   zip
+  zoxide
 
   # Encryption and security tools
   age
