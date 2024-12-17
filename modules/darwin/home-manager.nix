@@ -70,6 +70,7 @@ in
       entries = [
         { path = "/Applications/Slack.app/"; }
         { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
+        { path = "${pkgs.kitty}/Applications/Kitty.app/"; }
       ];
     };
   };

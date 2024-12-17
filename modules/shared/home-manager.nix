@@ -3,6 +3,18 @@
 let name = "Nathan Collins";
     user = "nathancollins";
     email = "nathjcollins@gmail.com";
+    kanagawa = pkgs.tmuxPlugins.mkTmuxPlugin {
+        pluginName = "kanagawa";
+        name = "tmux-kanagawa";
+        # version = "unstable-2023-01-06";
+        src = pkgs.fetchFromGitHub {
+        name = "tmux-kanagawa";
+          owner = "Nybkox";
+          repo = "tmux-kanagawa";
+          rev = "0d2db8d95e1b74643a06802043c7000a79ba0a0a";
+          sha256 = "sha256-9S4HQHuECGLPLdPishmwEO0twdeQ6mZQfIMNFFDkgQ8=";
+        };
+      };
 in
 {
   # Shared shell configuration
@@ -77,7 +89,7 @@ in
 
       alias cdf='cd $(find ~/repos  -maxdepth 5 -type d -not -path "*/.*" -print | fzf)'
 
-      alias z='zellij'
+      # alias z='zellij'
 
       alias lg='lazygit'
 
@@ -123,6 +135,13 @@ in
       alias nr='npm remove'
       alias nt='npm test'
       export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+      bindkey "^[[1;3C" forward-word
+      bindkey "^[[1;3D" backward-word
+
+      bindkey -s "^[3" "#"
+
+      eval "$(zoxide init zsh)"
     '';
   };
 
@@ -322,6 +341,19 @@ in
     };
   };
 
+  kitty = {
+    enable = true;
+    settings = {
+      enable_audio_bell = false;
+      background_opacity = "0.6";
+      background_blur = 5;
+      cursor_trail = 3;
+      font_family = "Maple Mono";
+      font_size = 18;
+      theme_file = "Kanagawa";
+    };
+  };
+
   ssh = {
     enable = true;
     includes = [
@@ -355,28 +387,18 @@ in
       yank
       prefix-highlight
       {
-        plugin = catppuccin;
+        plugin = kanagawa;
         extraConfig = ''
-          set -g @plugin 'catppuccin/tmux'
-          set -g @catppuccin_window_left_separator ""
-          set -g @catppuccin_window_right_separator " "
-          set -g @catppuccin_window_middle_separator " █"
-          set -g @catppuccin_window_number_position "right"
+            set -g @kanagawa-theme 'dragon'
 
-          set -g @catppuccin_window_default_fill "number"
-          set -g @catppuccin_window_default_text "#W"
+            set -g @kanagawa-ignore-window-colors true
 
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W"
+            set -g @kanagawa-show-battery false
+            set -g @kanagawa-show-powerline true
+            set -g @kanagawa-refresh-rate 10
 
-          set -g @catppuccin_status_modules_right "directory cpu"
-          set -g @catppuccin_status_left_separator  " "
-          set -g @catppuccin_status_right_separator ""
-          set -g @catppuccin_status_fill "icon"
-          set -g @catppuccin_status_connect_separator "no"
-
-          set -g @catppuccin_directory_text "#{pane_current_path}"
-          set -g @catppuccin_flavour 'frappe' # latte,frappe, macchiato or mocha
+            set -g @kanagawa-plugins "cpu-usage gpu-usage ram-usage"
+            set -g @kanagawa-cpu-usage-colors "pink dark_gray"
         '';
       }
       {
@@ -409,6 +431,10 @@ in
     escapeTime = 10;
     historyLimit = 50000;
     extraConfig = ''
+      set -g default-shell /bin/zsh
+
+      set -g default-command "reattach-to-user-namespace -l zsh"
+
       # Remove Vim mode delays
       set -g focus-events on
 

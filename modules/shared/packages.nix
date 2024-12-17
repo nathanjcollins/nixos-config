@@ -10,10 +10,12 @@ with pkgs; [
   btop
   coreutils
   killall
+  kitty
   neovim
   openssh
   sqlite
   wget
+  yazi
   zip
   zoxide
 
@@ -64,9 +66,14 @@ with pkgs; [
 
   # .NET
   (with dotnetCorePackages; combinePackages [
-    sdk_8_0_1xx
-    sdk_7_0_3xx
+    sdk_9_0
+    sdk_8_0
+    # sdk_7_0
   ])
   # dotnetCorePackages.sdk_8_0_2xx
   # dotnetCorePackages.sdk_7_0_3xx
+
+  # Gleam
+  gleam
+  erlang_27
 ]
