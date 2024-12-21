@@ -9,6 +9,7 @@ with pkgs; [
   bat
   btop
   coreutils
+  delta
   killall
   kitty
   neovim
@@ -44,6 +45,7 @@ with pkgs; [
   nodePackages.prettier
   nodejs
   deno
+  bun
 
   # Text and terminal utilities
   htop

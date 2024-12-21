@@ -351,6 +351,7 @@ in
       font_family = "Maple Mono";
       font_size = 18;
       theme_file = "Kanagawa";
+      macos_option_as_alt = true;
     };
   };
 
