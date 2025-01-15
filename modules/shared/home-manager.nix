@@ -49,7 +49,7 @@ in
 
       source $ZSH/oh-my-zsh.sh
 
-      source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+      source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
       # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -121,7 +121,7 @@ in
       # bun completions
       [ -s "/Users/nathancollins/.bun/_bun" ] && source "/Users/nathancollins/.bun/_bun"
 
-      alias ls='exa --icons'
+      alias ls='eza --icons'
 
       # pnpm shortcuts
       alias pi='pnpm i'
@@ -274,72 +274,6 @@ in
       let g:airline_powerline_fonts = 1
       '';
      };
-
-  alacritty = {
-    enable = true;
-    settings = {
-      cursor = {
-        style = "Block";
-      };
-
-      window = {
-        opacity = 0.9;
-        padding = {
-          x = 2;
-          y = 2;
-        };
-        option_as_alt = "Both";
-      };
-
-      font = {
-        normal = {
-          family = "MesloLGS NF";
-          style = "Regular";
-        };
-        size = lib.mkMerge [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux 10)
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 18)
-        ];
-      };
-
-      # dynamic_padding = true;
-      # decorations = "full";
-      # title = "Terminal";
-      # class = {
-      #   instance = "Alacritty";
-      #   general = "Alacritty";
-      # };
-
-      colors = {
-        primary = {
-          background = "0x16181a";
-          foreground = "0xffffff";
-        };
-
-        normal = {
-          black = "0x16181a";
-          blue = "0x5ea1ff";
-          cyan = "0x5ef1ff";
-          green = "0x5eff6c";
-          magenta = "0xbd5eff";
-          red = "0xff6e5e";
-          white = "0xffffff";
-          yellow = "0xf1ff5e";
-        };
-
-        bright = {
-          black = "0x3c4048";
-          blue = "0x5ea1ff";
-          cyan = "0x5ef1ff";
-          green = "0x5eff6c";
-          magenta = "0xbd5eff";
-          red = "0xff6e5e";
-          white = "0xffffff";
-          yellow = "0xf1ff5e";
-        };
-      };
-    };
-  };
 
   kitty = {
     enable = true;

@@ -23,6 +23,14 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     }; 
+    homebrew-formulae = {
+      url = "github:koekeishiya/homebrew-formulae";
+      flake = false;
+    }; 
+    felixkratz-formulae = {
+      url = "github:FelixKratz/homebrew-formulae";
+      flake = false;
+    }; 
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +40,7 @@
       flake = false;
     };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, disko, agenix, secrets } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-formulae, felixkratz-formulae, home-manager, nixpkgs, disko, agenix, secrets } @inputs:
     let
       user = "nathancollins";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -93,6 +101,8 @@
                   "homebrew/homebrew-core" = homebrew-core;
                   "homebrew/homebrew-cask" = homebrew-cask;
                   "homebrew/homebrew-bundle" = homebrew-bundle;
+                  "koekeishiya/homebrew-formulae" = homebrew-formulae;
+                  "felixkratz/homebrew-formulae" = felixkratz-formulae;
                 };
                 mutableTaps = false;
                 autoMigrate = true;

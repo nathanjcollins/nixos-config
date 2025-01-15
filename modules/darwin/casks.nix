@@ -24,4 +24,6 @@ _:
   # Browsers
   # "google-chrome"
   # "arc"
+  "font-hack-nerd-font"
+  "whisky"
 ]
