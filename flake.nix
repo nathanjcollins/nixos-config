@@ -4,6 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +41,7 @@
       flake = false;
     };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-formulae, felixkratz-formulae, home-manager, nixpkgs, disko, agenix, secrets } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-formulae, felixkratz-formulae, home-manager, nixpkgs, disko, agenix, secrets, neovim-nightly-overlay } @inputs:
     let
       user = "nathancollins";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -81,6 +82,9 @@
         "check-keys" = mkApp "check-keys" system;
         "rollback" = mkApp "rollback" system;
       };
+      overlays = [
+        inputs.neovim-nightly-overlay.overlays.default
+      ];
     in
     {
       devShells = forAllSystems devShell;
@@ -128,5 +132,15 @@
           ./hosts/nixos
         ];
      });
+
+      homeConfigurations = {
+        macbook-pro = inputs.home-manager.lib.homeManagerConfiguration {
+          modules = [
+            {
+              nixpkgs.overlays = overlays;
+            }
+          ];
+        };
+      };
   };
 }
