@@ -3,18 +3,6 @@
 let name = "Nathan Collins";
     user = "nathancollins";
     email = "nathjcollins@gmail.com";
-    kanagawa = pkgs.tmuxPlugins.mkTmuxPlugin {
-        pluginName = "kanagawa";
-        name = "tmux-kanagawa";
-        # version = "unstable-2023-01-06";
-        src = pkgs.fetchFromGitHub {
-        name = "tmux-kanagawa";
-          owner = "Nybkox";
-          repo = "tmux-kanagawa";
-          rev = "0d2db8d95e1b74643a06802043c7000a79ba0a0a";
-          sha256 = "sha256-9S4HQHuECGLPLdPishmwEO0twdeQ6mZQfIMNFFDkgQ8=";
-        };
-      };
 in
 {
   # Shared shell configuration
@@ -167,7 +155,7 @@ in
 
   vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-airline vim-airline-themes vim-startify vim-tmux-navigator ];
+    plugins = with pkgs.vimPlugins; [ vim-airline vim-airline-themes vim-startify ];
     settings = { ignorecase = true; };
     extraConfig = ''
       "" General
@@ -313,113 +301,4 @@ in
       };
     };
   };
-
-  tmux = {
-    enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator
-      sensible
-      yank
-      prefix-highlight
-      {
-        plugin = kanagawa;
-        extraConfig = ''
-            set -g @kanagawa-theme 'dragon'
-
-            set -g @kanagawa-ignore-window-colors true
-
-            set -g @kanagawa-show-battery false
-            set -g @kanagawa-show-powerline true
-            set -g @kanagawa-refresh-rate 10
-
-            set -g @kanagawa-plugins "cpu-usage gpu-usage ram-usage"
-            set -g @kanagawa-cpu-usage-colors "pink dark_gray"
-        '';
-      }
-      {
-        plugin = cpu;
-        extraConfig = ''
-          set -g @plugin 'tmux-plugins/tmux-cpu'
-        '';
-      }
-      {
-        plugin = resurrect; # Used by tmux-continuum
-
-        # Use XDG data directory
-        # https://github.com/tmux-plugins/tmux-resurrect/issues/348
-        extraConfig = ''
-          set -g @resurrect-dir '$HOME/.cache/tmux/resurrect'
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-pane-contents-area 'visible'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '5' # minutes
-        '';
-      }
-    ];
-    terminal = "screen-256color";
-    prefix = "C-x";
-    escapeTime = 10;
-    historyLimit = 50000;
-    extraConfig = ''
-      set -g default-shell /bin/zsh
-
-      set -g default-command "reattach-to-user-namespace -l zsh"
-
-      # Remove Vim mode delays
-      set -g focus-events on
-
-      # Enable full mouse support
-      set -g mouse on
-
-      # -----------------------------------------------------------------------------
-      # Key bindings
-      # -----------------------------------------------------------------------------
-
-      # Unbind default keys
-      unbind C-b
-      unbind '"'
-      unbind %
-
-      # Split panes, vertical or horizontal
-      bind-key x split-window -v
-      bind-key v split-window -h
-      bind-key q killp
-
-      # Move around panes with vim-like bindings (h,j,k,l)
-      # bind-key -n M-k select-pane -U
-      # bind-key -n M-h select-pane -L
-      # bind-key -n M-j select-pane -D
-      # bind-key -n M-l select-pane -R
-
-      # Smart pane switching with awareness of Vim splits.
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-
-      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' 'select-pane -L'
-      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
-      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
-      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
-
-      tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-
-      if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-          "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-      if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-          "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
-
-      bind-key -n 'C-Space' if-shell "$is_vim" 'send-keys C-Space' 'select-pane -t:.+'
-
-      bind-key -T copy-mode-vi 'C-h' select-pane -L
-      bind-key -T copy-mode-vi 'C-j' select-pane -D
-      bind-key -T copy-mode-vi 'C-k' select-pane -U
-      bind-key -T copy-mode-vi 'C-l' select-pane -R
-      bind-key -T copy-mode-vi 'C-\' select-pane -l
-      bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
-      '';
-    };
 }

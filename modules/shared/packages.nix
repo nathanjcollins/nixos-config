@@ -7,11 +7,15 @@ with pkgs; [
   bash-completion
   bat
   btop
+  cmake
   coreutils
   delta
+  gettext
+  helix
   killall
   kitty
   neovim
+  ninja
   openssh
   sqlite
   wget
@@ -42,6 +46,7 @@ with pkgs; [
   # Node.js development tools
   nodePackages.npm # globally install npm
   nodePackages.prettier
+  prettierd
   nodejs
   deno
   bun
@@ -54,7 +59,6 @@ with pkgs; [
   jq
   ripgrep
   tree
-  tmux
   unzip
   zsh-powerlevel10k
 

@@ -23,15 +23,17 @@ in
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
     brews = [
-      "borders"
+      # "borders"
       "eza"
       "fzf"
       "lazygit"
+      "k9s"
+      "neofetch"
       "powerlevel10k"
       "reattach-to-user-namespace"
-      "sketchybar"
-      "skhd"
-      "yabai"
+      # "sketchybar"
+      # "skhd"
+      # "yabai"
     ];
     onActivation = {
       autoUpdate = true;
@@ -85,7 +87,6 @@ in
       enable = true;
       entries = [
         { path = "/Applications/Slack.app/"; }
-        { path = "${pkgs.kitty}/Applications/Kitty.app/"; }
       ];
     };
   };

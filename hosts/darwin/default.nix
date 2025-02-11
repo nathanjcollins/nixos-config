@@ -14,9 +14,9 @@ let user = "nathancollins"; in
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  services.yabai.enable = true;
-  services.skhd.enable = true;
-  services.sketchybar.enable = true;
+  # services.yabai.enable = true;
+  # services.skhd.enable = true;
+  # services.sketchybar.enable = true;
   # services.borders.enable = true;
 
   # Setup user, packages, programs

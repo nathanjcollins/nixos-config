@@ -7,14 +7,6 @@ let
   xdg_stateHome  = "${config.users.users.${user}.home}/.local/state";
 in
 {
-  ".tmux/plugins/tmux/themes/cyberdream.tmuxtheme" = {
-    source = "${pkgs.fetchFromGitHub {
-      owner = "scottmckendry";
-      repo = "cyberdream.nvim";
-      rev = "9eb7c63091d7369eba9015e9c656ca644ba6a3a4";
-      sha256 = "sha256-yVLHn3qg+gkP7y/1DL94gyfSkLModPGxjqkoC54Kndc=";
-    }}/extras/tmux/cyberdream.tmuxtheme";
-  };
   # "${xdg_configHome}/nvim" = {
   #   source = "${pkgs.fetchFromGitHub {
   #     owner = "nathanjcollins";
