@@ -95,6 +95,9 @@
           inherit system;
           specialArgs = inputs;
           modules = [
+            {
+                nixpkgs.overlays = overlays;
+            }
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew
             {
@@ -121,9 +124,13 @@
         inherit system;
         specialArgs = inputs;
         modules = [
+          {
+              nixpkgs.overlays = overlays;
+          }
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager {
             home-manager = {
+              nixpkgs.overlays = overlays;
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = import ./modules/nixos/home-manager.nix;
@@ -132,15 +139,5 @@
           ./hosts/nixos
         ];
      });
-
-      homeConfigurations = {
-        macbook-pro = inputs.home-manager.lib.homeManagerConfiguration {
-          modules = [
-            {
-              nixpkgs.overlays = overlays;
-            }
-          ];
-        };
-      };
   };
 }
