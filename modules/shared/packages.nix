@@ -14,7 +14,7 @@ with pkgs; [
   helix
   killall
   kitty
-  neovim
+  neovim-nightly
   ninja
   openssh
   sqlite
