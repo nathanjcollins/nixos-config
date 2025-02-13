@@ -66,6 +66,7 @@
       };
       mkLinuxApps = system: {
         "apply" = mkApp "apply" system;
+        "build" = mkApp "build" system;
         "build-switch" = mkApp "build-switch" system;
         "copy-keys" = mkApp "copy-keys" system;
         "create-keys" = mkApp "create-keys" system;
@@ -139,5 +140,17 @@
           ./hosts/nixos
         ];
      });
+
+    homeConfigurations = nixpkgs.lib.genAttrs linuxSystems (system: let
+        user = "nathancollins";
+      in
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = inputs;
+          modules = [
+            ./hosts/linux
+          ];
+        }
+      );
   };
 }
