@@ -8,15 +8,19 @@ with pkgs; [
   bat
   btop
   cmake
+  colima
   coreutils
   delta
+  fsautocomplete
   gettext
+  gh
   helix
   killall
   kitty
   neovim
   ninja
   openssh
+  roslyn-ls
   sqlite
   wget
   yazi
@@ -46,6 +50,10 @@ with pkgs; [
   # Node.js development tools
   nodePackages.npm # globally install npm
   nodePackages.prettier
+  nodePackages.typescript
+  nodePackages.typescript-language-server
+  nodePackages."@vue/language-server"
+  nodePackages.svelte-language-server
   prettierd
   nodejs
   deno
@@ -63,6 +71,7 @@ with pkgs; [
   zsh-powerlevel10k
 
   # Python packages
+  pyenv
   python312
   python312Packages.virtualenv # globally install virtualenv
 

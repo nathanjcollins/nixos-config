@@ -13,7 +13,7 @@ let user = "nathancollins"; in
   ];
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   # services.yabai.enable = true;
   # services.skhd.enable = true;
   # services.sketchybar.enable = true;
@@ -24,12 +24,12 @@ let user = "nathancollins"; in
     package = pkgs.nix;
     settings.trusted-users = [ "@admin" "${user}" ];
 
-    gc = {
-      user = "root";
-      automatic = true;
-      interval = { Weekday = 0; Hour = 2; Minute = 0; };
-      options = "--delete-older-than 30d";
-    };
+    # gc = {
+    #   user = "root";
+    #   automatic = true;
+    #   interval = { Weekday = 0; Hour = 2; Minute = 0; };
+    #   options = "--delete-older-than 30d";
+    # };
 
     # Turn this on to make command line easier
     extraOptions = ''

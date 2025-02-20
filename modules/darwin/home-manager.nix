@@ -27,6 +27,7 @@ in
       "eza"
       "fzf"
       "lazygit"
+      "lua-language-server"
       "k9s"
       "neofetch"
       "powerlevel10k"
