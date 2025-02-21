@@ -22,6 +22,8 @@ in
           file = "p10k.zsh";
       }
     ];
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     initExtraFirst = ''
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -29,11 +31,9 @@ in
       fi
 
       # Load oh-my-zsh
-      export ZSH="$HOME/.oh-my-zsh"
+      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
 
       ZSH_THEME="robbyrussell"
-
-      plugins=(git zsh-autosuggestions fast-syntax-highlighting zsh-autocomplete)
 
       source $ZSH/oh-my-zsh.sh
 
@@ -130,7 +130,17 @@ in
       bindkey -s "^[3" "#"
 
       eval "$(zoxide init zsh)"
+
+      export PATH=/home/nathancollins/.cache/rebar3/bin:$PATH
     '';
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" "docker" "kubectl" ];
+    };
+  };
+
+  gpg = {
+    enable = true;
   };
 
   git = {
@@ -263,20 +273,6 @@ in
       '';
      };
 
-  kitty = {
-    enable = true;
-    settings = {
-      enable_audio_bell = false;
-      background_opacity = "0.6";
-      background_blur = 5;
-      cursor_trail = 3;
-      font_family = "Maple Mono";
-      font_size = 18;
-      theme_file = "Kanagawa";
-      macos_option_as_alt = true;
-    };
-  };
-
   ssh = {
     enable = true;
     includes = [
@@ -300,5 +296,124 @@ in
         ];
       };
     };
+  };
+
+  ghostty = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        # font-family = "Maple Mono";
+        shell-integration = "zsh";
+        font-size = "18";
+        command = "zsh";
+        background-opacity = "0.9";
+        macos-option-as-alt = "true";
+
+        theme = "kanagawa-dragon";
+
+        keybind = [
+          "ctrl+t=new_tab"
+          "ctrl+w=close_surface"
+          "global:cmd+grave_accent=toggle_quick_terminal"
+
+          "ctrl+s>h=new_split:left"
+          "ctrl+s>j=new_split:down"
+          "ctrl+s>k=new_split:up"
+          "ctrl+s>l=new_split:right"
+          "ctrl+s>f=toggle_split_zoom"
+          "ctrl+s>equal=equalize_splits"
+
+          "ctrl+up=resize_split:up,20"
+          "ctrl+down=resize_split:down,20"
+          "ctrl+left=resize_split:left,20"
+          "ctrl+right=resize_split:right,20"
+
+          "alt+h=goto_split:left"
+          "alt+j=goto_split:bottom"
+          "alt+k=goto_split:top"
+          "alt+l=goto_split:right"
+
+          "ctrl+z=toggle_tab_overview"
+        ];
+
+        window-save-state = "always";
+      };
+      themes = {
+        kanagawa-dragon = {
+          background = "181616";
+          foreground = "c5c9c5";
+          cursor-color = "c8c093";
+          selection-background = "2d4f67";
+          selection-foreground = "c8c093";
+          palette = [
+            "0=#0d0c0c"
+            "1=#c4746e"
+            "2=#8a9a7b"
+            "3=#c4b28a"
+            "4=#8ba4b0"
+            "5=#a292a3"
+            "6=#8ea4a2"
+            "7=#c8c093"
+            "8=#a6a69c"
+            "9=#e46876"
+            "10=#87a987"
+            "11=#e6c384"
+            "12=#7fb4ca"
+            "13=#938aa9"
+            "14=#7aa89f"
+            "15=#c5c9c5"
+          ];
+        };
+        kanagawa-lotus = {
+          background = "f2ecbc";
+          foreground = "545464";
+          cursor-color = "43436c";
+          selection-background = "c9cbd1";
+          selection-foreground = "43436c";
+          palette = [
+            "0=#1f1f28"
+            "1=#c84053"
+            "2=#6f894e"
+            "3=#77713f"
+            "4=#4d699b"
+            "5=#b35b79"
+            "6=#597b75"
+            "7=#545464"
+            "8=#8a8980"
+            "9=#d7474b"
+            "10=#6e915f"
+            "11=#836f4a"
+            "12=#6693bf"
+            "13=#624c83"
+            "14=#5e857a"
+            "15=#43436c"
+          ];
+        };
+        kanagawa-wave = {
+          background = "1f1f28";
+          foreground = "dcd7ba";
+          cursor-color = "c8c093";
+          selection-background = "2d4f67";
+          selection-foreground = "c8c093";
+          palette = [
+            "0=#16161d"
+            "1=#c34043"
+            "2=#76946a"
+            "3=#c0a36e"
+            "4=#7e9cd8"
+            "5=#957fb8"
+            "6=#6a9589"
+            "7=#c8c093"
+            "8=#727169"
+            "9=#e82424"
+            "10=#98bb6c"
+            "11=#e6c384"
+            "12=#7fb4ca"
+            "13=#938aa9"
+            "14=#7aa89f"
+            "15=#dcd7ba"
+          ];
+        };
+      };
   };
 }

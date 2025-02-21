@@ -14,4 +14,11 @@ let user = "nathancollins"; in
     '';
   };
   programs.home-manager.enable = true;
+
+  # services = {
+  #   xserver = {
+  #     enable = true;
+  #     xkbOptions = "caps:escape_shifted_capslock";
+  #   };
+  # };
 }

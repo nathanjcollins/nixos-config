@@ -11,12 +11,14 @@ with pkgs; [
   colima
   coreutils
   delta
+  eza
   fsautocomplete
+  fzf
   gettext
   gh
   helix
   killall
-  kitty
+  lazygit
   neovim
   ninja
   openssh
@@ -46,6 +48,7 @@ with pkgs; [
   noto-fonts
   noto-fonts-emoji
   meslo-lgs-nf
+  maple-mono-NF
 
   # Node.js development tools
   nodePackages.npm # globally install npm
@@ -65,6 +68,7 @@ with pkgs; [
   iftop
   jetbrains-mono
   jq
+  oh-my-zsh
   ripgrep
   tree
   unzip
