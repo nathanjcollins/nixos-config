@@ -11,12 +11,14 @@ in
    ./dock
   ];
 
+  programs.fish.enable = true;
+
   # It me
   users.users.${user} = {
     name = "${user}";
     home = "/Users/${user}";
     isHidden = false;
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   homebrew = {
@@ -27,7 +29,6 @@ in
       "eza"
       "fzf"
       "lazygit"
-      "lua-language-server"
       "k9s"
       "neofetch"
       "powerlevel10k"

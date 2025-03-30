@@ -57,7 +57,7 @@ let user = "nathancollins";
     dconf.enable = true;
 
     # My shell
-    zsh.enable = true;
+    fish.enable = true;
   };
 
   services = {
@@ -247,7 +247,7 @@ let user = "nathancollins";
         "wheel" # Enable ‘sudo’ for the user.
         "docker"
       ];
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       openssh.authorizedKeys.keys = keys;
     };
 
@@ -269,15 +269,15 @@ let user = "nathancollins";
       groups = [ "wheel" ];
     }];
   };
-
-  fonts.packages = with pkgs; [
-    dejavu_fonts
-    feather-font # from overlay
-    jetbrains-mono
-    font-awesome
-    noto-fonts
-    noto-fonts-emoji
-  ];
+  fonts.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.maple-mono)
+  # fonts.packages = with pkgs; [
+  #   dejavu_fonts
+  #   feather-font # from overlay
+  #   jetbrains-mono
+  #   font-awesome
+  #   noto-fonts
+  #   noto-fonts-emoji
+  # ];
 
   environment.systemPackages = with pkgs; [
     agenix.packages."${pkgs.system}".default # "x86_64-linux"

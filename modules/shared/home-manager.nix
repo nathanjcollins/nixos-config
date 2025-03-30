@@ -6,136 +6,17 @@ let name = "Nathan Collins";
 in
 {
   # Shared shell configuration
-  zsh = {
+  fish = {
     enable = true;
-    autocd = false;
-    cdpath = [ "~/.local/share/src" ];
     plugins = [
-      {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-          name = "powerlevel10k-config";
-          src = lib.cleanSource ./config;
-          file = "p10k.zsh";
-      }
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "z"; src = pkgs.fishPlugins.z.src; }
+      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
     ];
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    initExtraFirst = ''
-      if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
-        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
-      fi
-
-      # Load oh-my-zsh
-      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
-
-      ZSH_THEME="robbyrussell"
-
-      source $ZSH/oh-my-zsh.sh
-
-      source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
-
-      # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-      export NVM_DIR="$HOME/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-      [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-      source <(fzf --zsh)
-
-      # Define variables for directories
-      export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
-      export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
-      export PATH=$HOME/.local/share/bin:$PATH
-
-      # Remove history data we don't want to see
-      export HISTIGNORE="pwd:ls:cd"
-
-      # Ripgrep alias
-      alias search=rg -p --glob '!node_modules/*'  $@
-
-      # nix shortcuts
-      shell() {
-          nix-shell '<nixpkgs>' -A "$1"
-      }
-
-      # pnpm is a javascript package manager
-      alias pn=pnpm
-      alias px=pnpx
-
-      # Use difftastic, syntax-aware diffing
-      alias diff=difft
-
-      # Always color ls and group directories
-      alias ls='ls --color=auto'
-
-      alias cdf='cd $(find ~/repos  -maxdepth 5 -type d -not -path "*/.*" -print | fzf)'
-
-      # alias z='zellij'
-
-      alias lg='lazygit'
-
-      # pnpm
-      export PNPM_HOME="/Users/nathancollins/.local/share/pnpm"
-      case ":$PATH:" in
-        *":$PNPM_HOME:"*) ;;
-        *) export PATH="$PNPM_HOME:$PATH" ;;
-      esac
-      # pnpm end
-
-      export DOTNET_TOOLS="/Users/nathancollins/.dotnet/tools"
-      case ":$PATH:" in
-        *":$DOTNET_TOOLS:"*) ;;
-        *) export PATH="$DOTNET_TOOLS:$PATH" ;;
-      esac
-
-      export HELIX_RUNTIME=/Users/nathancollins/repos/helix/runtime
-
-      # export KUBECONFIG=/Users/nathancollins/repos/cap/caput-energy/config/caput-shared-cluster.kubeconfig:/Users/nathancollins/repos/cap/cap-terraform/config/cap-dev-cluster.kubeconfig
-      #
-      # export KUBECONFIG=/Users/nathancollins/repos/cap/cap-terraform/config/cap-prod-cluster.kubeconfig
-      export KUBECONFIG=/Users/nathancollins/repos/cap/cap-terraform/config/cap-test-cluster.kubeconfig
-
-      export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
-      export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-      export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-      # bun completions
-      [ -s "/Users/nathancollins/.bun/_bun" ] && source "/Users/nathancollins/.bun/_bun"
-
-      alias ls='eza --icons'
-
-      # pnpm shortcuts
-      alias pi='pnpm i'
-      alias pd='pnpm dev'
-      alias pr='pnpm remove'
-      alias pt='pnpm test'
-
-      # npm shortcuts
-      alias ni='npm i'
-      alias nd='npm dev'
-      alias nr='npm remove'
-      alias nt='npm test'
-      export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-
-      bindkey "^[[1;3C" forward-word
-      bindkey "^[[1;3D" backward-word
-
-      bindkey -s "^[3" "#"
-
-      eval "$(zoxide init zsh)"
-
-      export PATH=/home/nathancollins/.cache/rebar3/bin:$PATH
-    '';
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "sudo" "docker" "kubectl" ];
+    shellAliases = {
+      lg = "lazygit";
+      pd = "pnpm run dev";
+      pi = "pnpm install";
     };
   };
 

@@ -18,11 +18,11 @@ with pkgs; [
   gh
   helix
   killall
+  lazydocker
   lazygit
   neovim
   ninja
   openssh
-  roslyn-ls
   sqlite
   wget
   yazi
@@ -40,15 +40,14 @@ with pkgs; [
   docker-compose
 
   # Media-related packages
-  dejavu_fonts
+  # dejavu_fonts
   ffmpeg
   fd
-  font-awesome
-  hack-font
-  noto-fonts
-  noto-fonts-emoji
-  meslo-lgs-nf
-  maple-mono-NF
+  # font-awesome
+  # hack-font
+  # noto-fonts
+  # noto-fonts-emoji
+  # meslo-lgs-nf
 
   # Node.js development tools
   nodePackages.npm # globally install npm
@@ -63,16 +62,16 @@ with pkgs; [
   bun
 
   # Text and terminal utilities
+  grc
   htop
   hunspell
   iftop
   jetbrains-mono
   jq
-  oh-my-zsh
+  oh-my-fish
   ripgrep
   tree
   unzip
-  zsh-powerlevel10k
 
   # Python packages
   pyenv
@@ -86,12 +85,13 @@ with pkgs; [
   (with dotnetCorePackages; combinePackages [
     sdk_9_0
     sdk_8_0
-    # sdk_7_0
   ])
-  # dotnetCorePackages.sdk_8_0_2xx
-  # dotnetCorePackages.sdk_7_0_3xx
 
   # Gleam
   gleam
   erlang_27
+
+  # LSPs
+  lua-language-server
+  roslyn-ls
 ]
