@@ -19,7 +19,6 @@ with pkgs; [
   helix
   killall
   lazydocker
-  lazygit
   neovim
   ninja
   openssh
