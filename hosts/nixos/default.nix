@@ -269,15 +269,7 @@ let user = "nathancollins";
       groups = [ "wheel" ];
     }];
   };
-  fonts.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.maple-mono)
-  # fonts.packages = with pkgs; [
-  #   dejavu_fonts
-  #   feather-font # from overlay
-  #   jetbrains-mono
-  #   font-awesome
-  #   noto-fonts
-  #   noto-fonts-emoji
-  # ];
+  fonts.packages = [ ... ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.maple-mono.NF)
 
   environment.systemPackages = with pkgs; [
     agenix.packages."${pkgs.system}".default # "x86_64-linux"

@@ -9,7 +9,7 @@ _:
   # "hashicorp/tap/terraform"
 
   # Communication Tools
-  "discord"
+  # "discord"
   # "slack"
 
   # Utility Tools
@@ -24,6 +24,6 @@ _:
   # Browsers
   # "google-chrome"
   # "arc"
-  "font-hack-nerd-font"
+  # "font-hack-nerd-font"
   "whisky"
 ]

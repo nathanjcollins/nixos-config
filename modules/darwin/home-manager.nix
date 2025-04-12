@@ -26,13 +26,7 @@ in
     casks = pkgs.callPackage ./casks.nix {};
     brews = [
       # "borders"
-      "eza"
-      "fzf"
-      "lazygit"
-      "k9s"
-      "neofetch"
-      "powerlevel10k"
-      "reattach-to-user-namespace"
+      # "reattach-to-user-namespace"
       # "sketchybar"
       # "skhd"
       # "yabai"

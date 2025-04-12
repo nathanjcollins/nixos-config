@@ -11,6 +11,7 @@ with pkgs; [
   colima
   coreutils
   delta
+  discord
   eza
   fsautocomplete
   fzf
@@ -18,7 +19,10 @@ with pkgs; [
   gh
   helix
   killall
+  k9s
   lazydocker
+  lazygit
+  neofetch
   neovim
   ninja
   openssh
@@ -50,11 +54,9 @@ with pkgs; [
 
   # Node.js development tools
   nodePackages.npm # globally install npm
+  nodePackages.pnpm
   nodePackages.prettier
   nodePackages.typescript
-  nodePackages.typescript-language-server
-  nodePackages."@vue/language-server"
-  nodePackages.svelte-language-server
   prettierd
   nodejs
   deno
@@ -93,4 +95,8 @@ with pkgs; [
   # LSPs
   lua-language-server
   roslyn-ls
+  nodePackages."@tailwindcss/language-server"
+  nodePackages.typescript-language-server
+  nodePackages."@vue/language-server"
+  nodePackages.svelte-language-server
 ]

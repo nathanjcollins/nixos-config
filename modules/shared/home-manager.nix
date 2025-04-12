@@ -5,61 +5,69 @@ let name = "Nathan Collins";
     email = "nathjcollins@gmail.com";
 in
 {
-  alacritty = {
+  kitty = {
     enable = true;
+    font = {
+      name = "Maple Mono";
+      size = 18;
+    };
+    shellIntegration.enableFishIntegration = true;
     settings = {
-      terminal = {
-        shell = "/Users/nathancollins/.nix-profile/bin/fish";
-      };
-      font = {
-        normal = {
-          family = "Maple Mono";
-          style = "Regular";
-        };
-        size = 18;
-      };
-      keyboard = {
-        bindings = [
-          {
-            key = "`";
-            mods = "Control";
-            action = "ToggleViMode";
-          }
-        ];
-      };
-      window = {
-        opacity = 0.9;
-      };
-      colors = {
-        bright = {
-          black = "#585273";
-          blue = "#78a8ff";
-          cyan = "#63f2f1";
-          green = "#7fe9c3";
-          magenta = "#7676ff";
-          red = "#f02e6e";
-          white = "#8a889d";
-          yellow = "#f2b482";
-        };
-        cursor = {
-          cursor = "#a1efd3";
-          text = "#1e1c31";
-        };
-        normal = {
-          black = "#1e1c31";
-          blue = "#91ddff";
-          cyan = "#abf8f7";
-          green = "#a1efd3";
-          magenta = "#d4bfff";
-          red = "#f48fb1";
-          white = "#cbe3e7";
-          yellow = "#ffe6b3";
-        };
-        primary = {
-          background = "#1e1c31";
-          foreground = "#cbe3e7";
-        };
-      };
+      hide_window_decorations = "yes";
+      cursor_trail = 1;
+      background = "#1E1C31";
+      foreground = "#CBE3E7";
+
+      cursor = "#A1EFD3";
+
+      selection_background = "#3E3859";
+      selection_foreground = "#CBE3E7";
+
+      # black
+      color0 = "#1E1C31";
+      color8 = " #585273";
+
+      # red
+      color1 = "#F48FB1";
+      color9 = "#F02E6E";
+
+      # green
+      color2 = "#A1EFD3";
+      color10 = "#7FE9C3";
+
+      # yellow
+      color3 = "#FFE6B3";
+      color11 = "#F2B482";
+
+      # blue
+      color4 = "#91DDFF";
+      color12 = "#78A8FF";
+
+      # magenta
+      color5 = "#D4BFFF";
+      color13 = "#7676FF";
+
+      # cyan
+      color6 = "#ABF8F7";
+      color14 = "#63F2F1";
+
+      # white
+      color7 = "#CBE3E7";
+      color15 = "#8A889D";
+
+      active_border_color = "#A1EFD3";
+      inactive_border_color = "#585273";
+      bell_border_color = "#F56574";
+
+      active_tab_foreground = "#2D2B40";
+      active_tab_background = "#63F2F1";
+      active_tab_font_style = "bold";
+
+      inactive_tab_foreground = "#CBE3E7";
+      inactive_tab_background = "#585273";
+      inactive_tab_font_style = "normal";
+
+      url_color = "#D4BFFF";
     };
   };
 
@@ -76,6 +84,9 @@ in
       set -g default-terminal \"tmux-256color\"
       set -ga terminal-overrides \",*256col*:Tc\"
       set-environment -g COLORTERM \"truecolor\"
+      bind '`' copy-mode
+      bind-key    -T copy-mode-vi v                  send-keys -X begin-selection
+      set -s escape-time 0
     ";
   };
 
