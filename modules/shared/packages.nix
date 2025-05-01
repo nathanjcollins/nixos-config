@@ -4,8 +4,10 @@ with pkgs; [
   # General packages for development and system management
   aspell
   aspellDicts.en
+  azure-cli
   bash-completion
   bat
+  bruno
   btop
   cmake
   colima
@@ -17,8 +19,10 @@ with pkgs; [
   fzf
   gettext
   gh
+  git-crypt
   helix
   killall
+  kubectl
   k9s
   lazydocker
   lazygit
@@ -27,6 +31,7 @@ with pkgs; [
   ninja
   openssh
   sqlite
+  terraform
   wget
   yazi
   zip
