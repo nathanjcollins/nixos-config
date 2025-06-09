@@ -2,12 +2,13 @@
 
 with pkgs; [
   # General packages for development and system management
+  aider-chat
   aspell
   aspellDicts.en
   azure-cli
   bash-completion
   bat
-  bruno
+  # bruno
   btop
   cmake
   colima
@@ -20,14 +21,14 @@ with pkgs; [
   gettext
   gh
   git-crypt
-  helix
+  # helix
   killall
   kubectl
   k9s
   lazydocker
   lazygit
   neofetch
-  neovim
+  neovim-unwrapped
   ninja
   openssh
   sqlite
@@ -104,4 +105,9 @@ with pkgs; [
   nodePackages.typescript-language-server
   nodePackages."@vue/language-server"
   nodePackages.svelte-language-server
+
+  claude-code
+  trivy
+  evil-helix
+  ollama
 ]
