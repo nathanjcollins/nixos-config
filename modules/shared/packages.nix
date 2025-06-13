@@ -8,7 +8,7 @@ with pkgs; [
   azure-cli
   bash-completion
   bat
-  # bruno
+  bruno
   btop
   cmake
   colima

@@ -11,6 +11,8 @@ in
    ./dock
   ];
 
+  system.primaryUser = "nathancollins";
+
   programs.fish.enable = true;
 
   # It me
@@ -25,7 +27,8 @@ in
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
     brews = [
-      # "borders"
+      "borders"
+      "rebar3"
       # "reattach-to-user-namespace"
       # "sketchybar"
       # "skhd"
