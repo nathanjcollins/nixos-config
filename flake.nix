@@ -32,6 +32,10 @@
       url = "github:FelixKratz/homebrew-formulae";
       flake = false;
     }; 
+    meetily-formulae = {
+      url = "github:zackriya-solutions/homebrew-meetily";
+      flake = false;
+    }; 
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,8 +44,12 @@
       url = "git+ssh://git@github.com/nathanjcollins/nix-secrets.git";
       flake = false;
     };
+    claude-code-nix = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-formulae, felixkratz-formulae, home-manager, nixpkgs, disko, agenix, secrets, neovim-nightly-overlay } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-formulae, felixkratz-formulae, home-manager, nixpkgs, disko, agenix, secrets, neovim-nightly-overlay, meetily-formulae, claude-code-nix } @inputs:
     let
       user = "nathancollins";
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -84,7 +92,7 @@
         "rollback" = mkApp "rollback" system;
       };
       overlays = [
-        inputs.neovim-nightly-overlay.overlays.default
+        claude-code-nix.overlays.default
       ];
     in
     {
@@ -111,6 +119,7 @@
                   "homebrew/homebrew-bundle" = homebrew-bundle;
                   "koekeishiya/homebrew-formulae" = homebrew-formulae;
                   "felixkratz/homebrew-formulae" = felixkratz-formulae;
+                  "zackriya-solutions/homebrew-meetily" = meetily-formulae;
                 };
                 mutableTaps = false;
                 autoMigrate = true;

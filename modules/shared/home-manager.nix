@@ -5,6 +5,9 @@ let name = "Nathan Collins";
     email = "nathjcollins@gmail.com";
 in
 {
+  starship = {
+    enable = true;
+  };
   kitty = {
     enable = true;
     font = {
@@ -103,6 +106,14 @@ in
       pd = "pnpm run dev";
       pi = "pnpm install";
     };
+    shellInit = "
+        set -Ux KUBECONFIG /Users/nathancollins/repos/cap/cap-terraform/config/cap-prod-cluster.kubeconfig
+        # set -Ux KUBECONFIG /Users/nathancollins/repos/cap/cap-terraform/config/cap-test-cluster.kubeconfig
+        fish_add_path /Users/nathancollins/.opencode/bin
+        set -gx OPENAI_API_KEY asdasd
+        set -gx OPENAI_BASE_URL http://localhost:11434/v1
+        set -gx OPENAI_MODEL qwen3-30b-a3b-2507
+    ";
   };
 
   gpg = {

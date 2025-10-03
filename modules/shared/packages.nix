@@ -47,6 +47,7 @@ with pkgs; [
   # Cloud-related tools and SDKs
   docker
   docker-compose
+  docker-buildx
 
   # Media-related packages
   # dejavu_fonts
@@ -63,8 +64,8 @@ with pkgs; [
   nodePackages.pnpm
   nodePackages.prettier
   nodePackages.typescript
+  # nodejs
   prettierd
-  nodejs
   deno
   bun
 
@@ -73,7 +74,7 @@ with pkgs; [
   htop
   hunspell
   iftop
-  jetbrains-mono
+  # jetbrains-mono
   jq
   oh-my-fish
   ripgrep
@@ -101,6 +102,7 @@ with pkgs; [
   # LSPs
   lua-language-server
   roslyn-ls
+  rzls
   nodePackages."@tailwindcss/language-server"
   nodePackages.typescript-language-server
   nodePackages."@vue/language-server"
@@ -109,5 +111,5 @@ with pkgs; [
   claude-code
   trivy
   evil-helix
-  ollama
+  qwen-code
 ]
